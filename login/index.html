@@ -16,21 +16,35 @@
     <a id="loginLink" class="active" href="/login/">Log In</a>
     <a id="signupLink" class="inactive" href="/signup/">Sign Up</a>
   </header>
-  <div class="content-wrapper">
-    <div class="login-box">
-      <h1>Log In</h1>
-      <form id="loginForm">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+  <div class="login-box article-container">
+    <h1>Log In</h1>
+    <form id="loginForm">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
 
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="••••••••" required>
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required>
 
-        <button type="submit">Sign In</button>
+      <button type="submit">Log In</button>
 
-        <p>Don’t have an account? <a href="/signup/">Create one</a></p>
-      </form>
-    </div>
+      <p>
+        Don't have an account? <a href="/signup/">Create one</a>
+      </p>
+    </form>
+
+    <p id="forgotPasswordText">
+      <a href="#" id="forgotPasswordLink">Forgot your password?</a>
+    </p>
+
+    <!-- Hidden reset form -->
+    <form id="resetForm" style="display: none; margin-top: 1rem;">
+      <label for="resetEmail">Enter your email to reset password</label>
+      <input type="email" id="resetEmail" required>
+      <button type="submit">Send Reset Email</button>
+      <p><a href="#" id="cancelReset">Cancel</a></p>
+    </form>
+
+    <p id="message" style="color: #0ff; margin-top: 1rem;"></p>
   </div>
   <footer>
     <p>By Algfish31 and Mystery Peeps</p>
