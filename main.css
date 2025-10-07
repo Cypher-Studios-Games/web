@@ -165,3 +165,116 @@ footer {
   font-size: 0.9rem;
   border-top: 1px solid rgba(0, 255, 255, 0.2);
 }
+
+/* ==== Game Card ==== */
+.game-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 15px;
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+  border-color: #00ffff;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.game-card h2 a {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff;
+  text-decoration: none;
+}
+
+.game-card p {
+  color: #ccc;
+  margin: 1rem auto;
+  max-width: 600px;
+}
+
+.game-image {
+  margin-top: 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 255, 255, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.game-image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+/* --- News Article Styling --- */
+.article-container {
+  max-width: 800px;
+  margin: 4rem auto;
+  padding: 2.5rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.1);
+  text-align: left;
+  line-height: 1.8;
+}
+
+.article-container h1 {
+  color: #00ffff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.article-meta {
+  text-align: center;
+  color: #888;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.article-container p {
+  color: #ddd;
+  margin-bottom: 1.2rem;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.article-container h2 {
+  text-align: center;
+}
+
+.article-container a {
+  color: #00ffff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.article-container a:hover {
+  color: #00ccff;
+  text-decoration: underline;
+}
+
+.article-container footer {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 0.9rem;
+  color: #888;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1.5rem;
+}
+
+/* Optional glowing animation for title */
+@keyframes glow {
+  0%, 100% { text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff; }
+  50% { text-shadow: 0 0 20px #00ccff, 0 0 30px #00ccff; }
+}
+
+.article-container h1 {
+  animation: glow 2s infinite alternate;
+}
