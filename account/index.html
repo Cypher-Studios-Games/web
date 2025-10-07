@@ -3,27 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cypher Studios</title>
+  <title>Cypher Studios - Account</title>
   <link rel="stylesheet" href="/main.css">
 </head>
 <body>
-
   <header>
     <a class="inactive" href="/">Home</a>
     <a class="inactive" href="/games/">Games</a>
     <a class="inactive" href="/news/">News</a>
-    <a class="inactive" href="/about/">About</a>
-    <a class="inactive" href="/login/">Log In</a>
-    <a class="inactive" href="/signup/">Sign Up</a>
+    <a class="inactive" href="/new/">New</a>
+    <a id="loginLink" class="active" href="/account/">Account</a>
+    <a id="signupLink" class="inactive" href="/logout/">Log Out</a>
   </header>
-  
-  <p>This is a template for Cypher Studios pages. Please go to another page.</p>
-  
-  <footer>
-    <p>By Algfish31 and Mystery Peeps</p>
-    <p>2025</p>
-  </footer>
 
+  <div class="article-container" id="account-info">
+    <h1>Account Info</h1>
+    <p>Loading your account...</p>
+  </div>
+
+  <script type="module" src="/account/index.js"></script>
 </body>
 <script type="module" src="/auth-links.js"></script>
 </html>

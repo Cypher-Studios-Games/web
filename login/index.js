@@ -13,7 +13,7 @@ loginForm.addEventListener("submit", async (e) => {
     alert("Login successful!");
     loginForm.reset();
     // redirect or show logged-in UI
-    window.location.href = "/games/";
+    window.location.href = "/";
   } catch (error) {
     console.error(error);
     alert(error.message);
