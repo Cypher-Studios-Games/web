@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - Cypher Studios</title>
+  <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+
+  <header>
+    <a class="inactive" href="/">Home</a>
+    <a class="inactive" href="/games/">Games</a>
+    <a class="inactive" href="/news/">News</a>
+    <a class="inactive" href="/about/">About</a>
+    <a class="inactive" href="/login/">Log In</a>
+    <a class="active" href="/signup/">Sign Up</a>
+  </header>
+
+  <div class="content-wrapper">
+    <div class="login-box">
+      <h1>Create Account</h1>
+      <form id="signupForm">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Username" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="••••••••" required>
+
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" name="confirm-password" placeholder="••••••••" required>
+
+        <button type="submit">Sign Up</button>
+
+        <p>Already have an account? <a href="/login/">Log In</a></p>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>By Algfish31 and Mystery Peeps</p>
+    <p>2025</p>
+  </footer>
+
+</body>
+<script type="module" src="/signup/index.js"></script>
+</html>
