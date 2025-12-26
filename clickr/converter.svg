@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" xmlns:bx="https://boxy-svg.com">
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 28px;" x="155.7" y="196.728"> </text>
+  <rect y="92.364" width="342.846" height="96.805" style="stroke: rgb(0, 0, 0); fill: rgb(104, 255, 139); stroke-width: 0px;"/>
+  <path d="M 2904.092 1215.33 L 2994.844 1384.734 L 2813.34 1384.734 L 2904.092 1215.33 Z" bx:shape="triangle 2813.34 1215.33 181.504 169.404 0.5 0 1@03489cb5" style="stroke: rgb(0, 0, 0); fill: rgb(104, 255, 139); stroke-width: 0px; transform-box: fill-box; transform-origin: 50% 50%;" transform="matrix(0.000001, 1, -1, 0.000001, -2490.656192, -1159.280132)"/>
+  <rect x="975.092" y="1434.79" width="342.846" height="96.805" style="stroke: rgb(0, 0, 0); fill: rgb(104, 255, 139); stroke-width: 0; transform-box: fill-box; transform-origin: 50% 50%;" transform="matrix(-1, -0.000001, 0.000001, -1, -818.883834, -1133.475221)"/>
+  <path d="M 2904.092 1215.33 L 2994.844 1384.734 L 2813.34 1384.734 L 2904.092 1215.33 Z" bx:shape="triangle 2813.34 1215.33 181.504 169.404 0.5 0 1@03489cb5" style="stroke: rgb(0, 0, 0); fill: rgb(104, 255, 139); stroke-width: 0; transform-origin: 2904.1px 1300.05px;" transform="matrix(0, -1, 1, -0.000001, -2818.472019, -950.319)"/>
+  <path style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 5px; stroke-linejoin: round;" d="M -1.174 92.126 L 328.501 90.974 L 328.501 49.476 L 495.644 141.693 L 329.653 229.299 L 329.653 188.954 L 1.131 188.954 L -1.174 92.126 Z"/>
+  <path style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 5px; stroke-linejoin: round;" d="M -0.022 348.028 L 169.427 262.727 L 169.427 299.614 L 497.949 299.614 L 497.949 397.594 L 170.579 398.747 L 170.579 437.939 L -0.022 348.028 Z"/>
+</svg>

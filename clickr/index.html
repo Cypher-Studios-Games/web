@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="game.css">
+  <title>CLICKR - Cypher Studios</title>
+</head>
+<body>
+
+<div id="frame" style="width: 100%;margin: auto;position: relative; z-index: 99998;">
+    <iframe data-aa='2421663' src='//acceptable.a-ads.com/2421663/?size=Adaptive&background_color=000000&title_color=00ffff&text_color=ffffff&link_hover_color=b5b5b5'
+                      style='border:0; padding:0; width:70%; height:auto; overflow:hidden;display: block;margin: auto'></iframe>
+</div>
+
+<h1 id="clk-value">0 CLK</h1>
+<h2 id="cps-value">0 CLK/s</h2>
+<button id="button">CLICK</button>
+<p></p>
+<div></div>
+<p></p>
+<button class="select-buttons" id="trade-button">Trade</button> 
+<button class="select-buttons" id="shop-button">Shop</button> 
+<button class="select-buttons" id="you-button">You</button> 
+<button class="select-buttons" id="options-button">Options</button> 
+<button class="select-buttons" id="about-button">About</button>
+<p></p>
+<div id="trade-div">
+  <h2>TRADE</h2>
+  <div id="trade-unlocked">
+    <p>Trade your currencies for other currencies here</p>
+    <ul>
+      
+    </ul>
+    <input type="text" id="trade-cur1">
+    <select id="trade-cur1-slct">
+      <option value="CLK">CLK</option>
+      <option value="TCK">TCK</option>
+      <option value="FLO">FLO</option>
+      <option value="CRE">CRE</option>
+      <option value="MNY">MNY</option>
+    </select>
+    <p></p>
+    <span id="trade-cur2"></span>
+    <select id="trade-cur2-slct">
+      <option value="CLK">CLK</option>
+      <option value="TCK">TCK</option>
+      <option value="FLO">FLO</option>
+      <option value="CRE">CRE</option>
+      <option value="MNY">MNY</option>
+    </select>
+    <p></p>
+    <button class="shop-buttons" id="trade-exec-btn">TRADE</button>
+    <h3>Trade Info</h3>
+    <p>
+      You cannot trade every currency with one another.<br>
+      Only certain currencies can be traded.<br>
+      This list will show you what currencies can be traded with one another:<br>
+    </p>
+    <p>CLK → TCK</p>
+    <p>CLK → FLO</p>
+    <p>FLO → TCK</p>
+    <p>FLO → CRE</p>
+    <p>TCK → CRE</p>
+    <p>CRE → FLO</p>
+    <p>CRE → TCK</p>
+    <p>CRE → MNY</p>
+  </div>
+</div>
+<div id="shop-div">
+  <h2>SHOP</h2>
+  <p></p>
+  <div id="generator-shop">
+    <img src="generator.svg" height="50"><p></p>
+    <span>Generator (GNR)</span><br>
+    <span><span id="gnr-price">10</span> CLK - <span id="gnr-owned">0</span> Owned</span><p></p>
+    <span id="gnr-message"></span>
+    <button class="shop-buttons" id="gnr-buy-btn">Buy</button>
+    <button class="shop-buttons" id="gnr-sell-btn">Sell</button>
+  </div>
+  <p></p>
+  <div id="booster-shop">
+    <img src="booster.svg" height="50"><p></p>
+    <span>Booster (BST)</span><br>
+    <span><span id="bst-price">250</span> CLK - <span id="bst-owned">0</span> Owned</span><p></p>
+    <span id="bst-message"></span>
+    <button class="shop-buttons" id="bst-buy-btn">Buy</button>
+    <button class="shop-buttons" id="bst-sell-btn">Sell</button>
+  </div>
+  <p></p>
+  <div id="converter-shop">
+    <img src="converter.svg" height="50"><p></p>
+    <span>Converter (CNV)</span><br>
+    <span><span id="cnv-price">5000</span> CLK - <span id="cnv-owned">0</span> Owned</span><p></p>
+    <span id="cnv-message"></span>
+    <button class="shop-buttons" id="cnv-buy-btn">Buy</button>
+    <button class="shop-buttons" id="cnv-sell-btn">Sell</button>
+  </div>
+  <p></p>
+  <div id="core-shop">
+    <img src="converter.svg" height="50"><p></p>
+    <span>Amplifier (AMP)</span><br>
+    <span><span id="amp-price">1</span> CRE - <span id="amp-owned">0</span> Owned</span><p></p>
+    <span id="amp-message"></span>
+    <button class="shop-buttons" id="amp-buy-btn">Buy</button>
+    <button class="shop-buttons" id="amp-sell-btn">Sell</button>
+  </div>
+</div>
+<div id="you-div">
+  <h2>YOU</h2>
+  <span id="total-worth">$0</span><br>
+  <span>Total Worth</span>
+  <p></p>
+  <hr>
+  <div class="stats-div">
+    <div class="you-left">
+      <p>Total CLK</p>
+      <p>Total TCK</p>
+      <p>Total FLO</p>
+      <p>Total CRE</p>
+      <p>Total MNY</p>
+    </div>
+    <div class="you-right">
+      <p id="you-clk">0</p>
+      <p id="you-tck">0</p>
+      <p id="you-flo">0</p>
+      <p id="you-cre">0</p>
+      <p id="you-mny">0</p>
+    </div>
+  </div>
+  <hr>
+  <div class="stats-div">
+    <div class="you-left">
+      <p>Generators Owned</p>
+      <p>Boosters Owned</p>
+      <p>Converters Owned</p>
+      <p>Amplifiers Owned</p>
+      <p></p>
+    </div>
+    <div class="you-right">
+      <p id="you-gnr">0</p>
+      <p id="you-bst">0</p>
+      <p id="you-cnv">0</p>
+      <p id="you-amp">0</p>
+      <p></p>
+    </div>
+  </div>
+</div>
+<div id="options-div">
+  <h2>OPTIONS</h2>
+  <button class="options-buttons"><a href="https://cypherstudios.org" style="color: rgb(231, 231, 231); text-decoration: none;">Return to Cypher Studios</a></button>
+  <p><strong>Time Until Save: <span>Beta - does not save</span></strong></p>
+</div>
+<div id="about-div">
+  <h2>ABOUT</h2>
+  <p>CLICKR is an incremental/clicker game developed by Cypher Studios.</p>
+  <p>Version: Beta</p>
+  <p>Developers: Cypher Studios</p>
+  <p>Website: <a href="https://cypherstudios.org" style="color: rgb(45, 168, 255); text-decoration: none;">https://cypherstudios.org</a></p>
+  <p>Donate: <a href="coindrop.to/cypherstudios" style="color: rgb(45, 168, 255); text-decoration: none;">Our Coindrop</a></p>
+  <h3>Update Log</h3>
+  <p>Beta - Pre-Release</p>
+</div>
+
+</body>
+<script type="module" src="game.js"></script>
+</html>
