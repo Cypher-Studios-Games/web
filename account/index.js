@@ -1,6 +1,8 @@
 import { auth, db, ref, get, set } from "/scripts/firebase.js";
 import { sendEmailVerification } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 
+const THEOREMREACH_API_KEY = "89ca715cc6e2f17491dd509a89ac";
+
 const accountContainer = document.getElementById("accountContainer");
 
 auth.onAuthStateChanged(async (user) => {
@@ -22,10 +24,16 @@ auth.onAuthStateChanged(async (user) => {
     const userData = userSnapshot.val();
 
     if (user.emailVerified) {
+      console.log(user.uid);
       // ✅ Update database if emailVerified is false
       if (!userData.emailVerified) {
         await set(ref(db, `users/${user.uid}/emailVerified`), true);
       }
+
+      const surveyUrl =
+        "https://theoremreach.com/respondent_entry" +
+        `?api_key=${THEOREMREACH_API_KEY}` +
+        `&user_id=${user.uid}`;
 
       // Show account info
       accountContainer.innerHTML = `
@@ -33,6 +41,9 @@ auth.onAuthStateChanged(async (user) => {
         <p><strong>Username:</strong> ${userData.username}</p>
         <p><strong>Email:</strong> ${userData.email}</p>
         <p><strong>Account Created:</strong> ${new Date(userData.createdAt).toLocaleString()}</p>
+        <p><strong>Points: </strong> ${userData.points || 0}</p>
+        <h1>Want more points?</h1>
+        <p>Take surveys and complete offers <a href="${surveyUrl}" target="_blank" rel="noopener">here</a> to earn more points!</p>
       `;
     } else {
       accountContainer.innerHTML = `
