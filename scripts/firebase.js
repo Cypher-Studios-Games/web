@@ -1,5 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+import { initializeAppCheck, ReCaptchaV3Provider } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app-check.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
@@ -23,6 +24,12 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getDatabase(app);
+
+// Initialize App Check
+const appCheck = initializeAppCheck(app, {
+  provider: new ReCaptchaV3Provider('6LcjkkYsAAAAAHPyVs2SPFW6Cax2-vO5GTZ13R4d'), // Use your Public Site Key
+  isTokenAutoRefreshEnabled: true
+});
 
 // Export all items you need
 export { app, auth, db, ref, set, get, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut };
