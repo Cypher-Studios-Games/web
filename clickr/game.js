@@ -1,6 +1,6 @@
 // IMPORTS //
 
-import { auth, db, ref, update, set, get, signOut } from '/scripts/firebase.js';
+import { auth, db, ref, update, increment, set, get, signOut } from '/scripts/firebase.js';
 
 // VARIABLES //
 
@@ -39,6 +39,8 @@ var tradeRates = {
   "CRE_TCK": 40,
   "CRE_MNY": 0.04
 };
+
+var time = 600;
 
 // ELEMENTS //
 
@@ -388,6 +390,9 @@ tradeExecButton.addEventListener("pointerdown", () => {
 // INTERVALS //
 
 setInterval(function () {
+  time = time - 1;
+  document.getElementById("timeUntilSave").innerHTML = roundTo(time / 10, 0);
+
   // TCK GENERATION
   tck = tck + ((1 / 600) * (ampAmt + 1));
   if (currency == 1) {
@@ -433,6 +438,7 @@ setInterval(function () {
 }, 100);
 
 setInterval(async function () {
+  time = 600;
   const user = auth.currentUser;
   if (!user) {
     alert("You must be logged in to save!");
@@ -457,6 +463,8 @@ setInterval(async function () {
       timePlayed: increment(1),
       points: increment(0.1)
     });
+
+    console.log("Cloud Save Successful");
 
   } catch (error) {
     console.error("Cloud Save Error:", error);

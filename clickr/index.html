@@ -151,7 +151,7 @@
 <div id="options-div">
   <h2>OPTIONS</h2>
   <button class="options-buttons"><a href="https://cypherstudios.org" style="color: rgb(231, 231, 231); text-decoration: none;">Return to Cypher Studios</a></button>
-  <p><strong>Time Until Save: <span>Beta - does not save</span></strong></p>
+  <p><strong>Time Until Save: <span id="timeUntilSave">?</span> seconds</strong></p>
 </div>
 <div id="about-div">
   <h2>ABOUT</h2>
@@ -159,7 +159,15 @@
   <p>Version: v1.0</p>
   <p>Developers: Cypher Studios</p>
   <p>Website: <a href="https://cypherstudios.org" style="color: rgb(45, 168, 255); text-decoration: none;">https://cypherstudios.org</a></p>
-  <p>Donate: <a href="coindrop.to/cypherstudios" style="color: rgb(45, 168, 255); text-decoration: none;">Our Coindrop</a></p>
+  <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+  <script>
+    kofiWidgetOverlay.draw('cypherstudiosgames', {
+      'type': 'floating-chat',
+      'floating-chat.donateButton.text': 'Support Us',
+      'floating-chat.donateButton.background-color': '#323842',
+      'floating-chat.donateButton.text-color': '#fff'
+    });
+  </script>
   <p>By playing Clickr, you agree to Cypher Studios' 
         <a href="/legal/privacypolicy/" style="color: rgb(45, 168, 255); text-decoration: none;">Privacy Policy</a> and 
         <a href="/legal/termsofservice/" style="color: rgb(45, 168, 255); text-decoration: none;">Terms of Service</a>.
