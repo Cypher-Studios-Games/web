@@ -1,3 +1,7 @@
+// IMPORTS //
+
+import { auth, db, ref, update, set, get, signOut } from '/scripts/firebase.js';
+
 // VARIABLES //
 
 var clk = 0;
@@ -128,6 +132,56 @@ function getCurrencyValue(index) {
     case 3: return cre;
     case 4: return mny;
   }
+}
+
+async function loadFromCloud() {
+    const user = auth.currentUser;
+    if (!user) return;
+
+    try {
+        // We only fetch the saveString to keep the data transfer light
+        const snapshot = await get(ref(db, 'users/' + user.uid + '/saveString'));
+        
+        if (snapshot.exists()) {
+            const encodedData = snapshot.val();
+            const decodedData = JSON.parse(atob(encodedData));
+
+            // Apply variables to your game
+            clk = decodedData.clk;
+            tck = decodedData.tck;
+            flo = decodedData.flo;
+            cre = decodedData.cre;
+            mny = decodedData.mny;
+            gnrAmt = decodedData.gnrAmt;
+            bstAmt = decodedData.bstAmt;
+            cnvAmt = decodedData.cnvAmt;
+            ampAmt = decodedData.ampAmt;
+            gnrPrice = decodedData.gnrPrice;
+            bstPrice = decodedData.bstPrice;
+            cnvPrice = decodedData.cnvPrice;
+            ampPrice = decodedData.ampPrice;
+            currency = decodedData.currency;
+
+            updateUI(); // Function to refresh your text elements
+            console.log("Cloud Save Loaded successfully.");
+        }
+    } catch (error) {
+        console.error("Cloud Load Error:", error);
+    }
+}
+
+function updateUI() {
+  curTxt.innerHTML = roundTo(getCurrencyValue(currency), 3) + " " + currencyList[currency];
+  curTxt.style.color = currencyColor[currency];
+  cpsTxt.innerHTML = roundTo((gnrAmt * ((bstAmt / 2) + 1)), 1) + " CLK/s"
+  gnrPriceTxt.innerHTML = roundTo(gnrPrice, 0);
+  gnrOwnedTxt.innerHTML = roundTo(gnrAmt, 0);
+  bstPriceTxt.innerHTML = roundTo(bstPrice, 0);
+  bstOwnedTxt.innerHTML = roundTo(bstAmt, 0);
+  cnvPriceTxt.innerHTML = roundTo(cnvPrice, 0);
+  cnvOwnedTxt.innerHTML = roundTo(cnvAmt, 0);
+  ampPriceTxt.innerHTML = roundTo(ampPrice, 0);
+  ampOwnedTxt.innerHTML = roundTo(ampAmt, 0);
 }
 
 // EVENT LISTENERS //
@@ -377,3 +431,52 @@ setInterval(function () {
     document.getElementById("total-worth").innerHTML = "$" +roundTo(((clk * 0.0000032) + (tck * 0.0004) + (flo * 0.0016) + (cre * 0.04) + mny), 2);
   }
 }, 100);
+
+setInterval(async function () {
+  const user = auth.currentUser;
+  if (!user) {
+    alert("You must be logged in to save!");
+    return;
+  }
+
+  const gameData = {
+    clk, cps, tck, flo, cre, mny,
+    gnrAmt, bstAmt, cnvAmt, ampAmt,
+    gnrPrice, bstPrice, cnvPrice, ampPrice,
+    currency
+  };
+    
+  // Convert object to JSON string, then to Base64
+  const saveCode = btoa(JSON.stringify(gameData));
+
+  try {
+    // Save to Firebase Realtime Database under 'users/USER_ID'
+    await update(ref(db, 'users/' + user.uid), {
+      saveString: saveCode,
+      updatedAt: Date.now(),
+      timePlayed: increment(1),
+      points: increment(0.1)
+    });
+
+  } catch (error) {
+    console.error("Cloud Save Error:", error);
+    alert("Failed to save to cloud.");
+  }
+}, 60000);
+
+// This listener runs automatically as soon as the page loads 
+// and Firebase finishes checking the login status.
+auth.onAuthStateChanged(async (user) => {
+    if (user) {
+        console.log("User detected:", user.uid);
+        console.log("Attempting to auto-load save data...");
+        
+        // Run your load function
+        await loadFromCloud();
+        
+        // After loading, ensure the UI shows the new values
+        updateUI(); 
+    } else {
+        console.log("No user logged in. Standing by for login.");
+    }
+});
