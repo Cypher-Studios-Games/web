@@ -485,6 +485,7 @@ auth.onAuthStateChanged(async (user) => {
         // After loading, ensure the UI shows the new values
         updateUI(); 
     } else {
-        console.log("No user logged in. Standing by for login.");
+        alert("You are not logged in. Please log in to load and save your game data.");
+        console.log("No user is signed in.");
     }
 });
