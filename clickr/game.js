@@ -2,6 +2,8 @@
 
 import { auth, db, ref, update, increment, set, get, signOut } from '/scripts/firebase.js';
 
+
+
 // VARIABLES //
 
 var clk = 0;
@@ -142,7 +144,7 @@ async function loadFromCloud() {
 
     try {
         // We only fetch the saveString to keep the data transfer light
-        const snapshot = await get(ref(db, 'users/' + user.uid + '/saveString'));
+        const snapshot = await get(ref(db, 'users/' + user.uid + '/clickrSave'));
         
         if (snapshot.exists()) {
             const encodedData = snapshot.val();
@@ -455,10 +457,23 @@ setInterval(async function () {
   // Convert object to JSON string, then to Base64
   const saveCode = btoa(JSON.stringify(gameData));
 
+  const snapshot = await get(ref(db, 'users/' + user.uid));
+
+  const data = snapshot.val();
+  
   try {
+    if (!data.clickrSave) {
+        console.log("New player detected (no save found). Sending email");
+        
+        emailjs.send("cypherstudios-gmail", "cypherstudios-trustpilot", {
+          to_email: user.email,
+          customer_name: user.username || "Player"
+      });
+    }
+
     // Save to Firebase Realtime Database under 'users/USER_ID'
     await update(ref(db, 'users/' + user.uid), {
-      saveString: saveCode,
+      clickrSave: saveCode,
       updatedAt: Date.now(),
       timePlayed: increment(1),
       points: increment(0.1)

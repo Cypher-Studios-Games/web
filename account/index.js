@@ -41,7 +41,8 @@ auth.onAuthStateChanged(async (user) => {
         <p><strong>Username:</strong> ${userData.username}</p>
         <p><strong>Email:</strong> ${userData.email}</p>
         <p><strong>Account Created:</strong> ${new Date(userData.createdAt).toLocaleString()}</p>
-        <p><strong>Points: </strong> ${userData.points || 0}</p>
+        <p><strong>Time Played: </strong> ${userData.timePlayed ? userData.timePlayed.toFixed(0) + " minutes" : "0 minutes"}</p>
+        <p><strong>Points: </strong> ${Math.floor(userData.points) || 0}</p>
         <h1>Want more points?</h1>
         <p>Take surveys and complete offers <a href="${surveyUrl}" target="_blank" rel="noopener">here</a> to earn more points!</p>
       `;
