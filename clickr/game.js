@@ -177,7 +177,7 @@ async function loadFromCloud() {
 function updateUI() {
   curTxt.innerHTML = roundTo(getCurrencyValue(currency), 3) + " " + currencyList[currency];
   curTxt.style.color = currencyColor[currency];
-  cpsTxt.innerHTML = roundTo((gnrAmt * ((bstAmt / 2) + 1)), 1) + " CLK/s"
+  cpsTxt.innerHTML = roundTo(((gnrAmt * ((bstAmt / 2) + 1)) * 2), 1) + " CLK/s";
   gnrPriceTxt.innerHTML = roundTo(gnrPrice, 0);
   gnrOwnedTxt.innerHTML = roundTo(gnrAmt, 0);
   bstPriceTxt.innerHTML = roundTo(bstPrice, 0);
@@ -186,6 +186,25 @@ function updateUI() {
   cnvOwnedTxt.innerHTML = roundTo(cnvAmt, 0);
   ampPriceTxt.innerHTML = roundTo(ampPrice, 0);
   ampOwnedTxt.innerHTML = roundTo(ampAmt, 0);
+  document.getElementById("you-clk").innerHTML = roundTo(clk, 0);
+  document.getElementById("you-tck").innerHTML = roundTo(tck, 3);
+  document.getElementById("you-flo").innerHTML = roundTo(flo, 2);
+  document.getElementById("you-cre").innerHTML = roundTo(cre, 2);
+  document.getElementById("you-mny").innerHTML = roundTo(mny, 2);
+  document.getElementById("you-gnr").innerHTML = roundTo(gnrAmt, 0);
+  document.getElementById("you-bst").innerHTML = roundTo(bstAmt, 0);
+  document.getElementById("you-cnv").innerHTML = roundTo(cnvAmt, 0);
+  document.getElementById("you-amp").innerHTML = roundTo(ampAmt, 0);
+  document.getElementById("total-worth").innerHTML = "$" +roundTo(((clk * 0.0000032) + (tck * 0.0004) + (flo * 0.0016) + (cre * 0.04) + mny + findUpgradeWorth(gnrAmt, 15, 1.15, 0.0000032) + findUpgradeWorth(bstAmt, 250, 1.15, 0.0000032) + findUpgradeWorth(cnvAmt, 5000, 1.15, 0.0000032) + findUpgradeWorth(ampAmt, 1, 1.15, 0.04)), 2);
+}
+
+function findUpgradeWorth(amt, basePrice, priceMultiplier, currencyWorth) {
+  var total = 0;
+  for (let i = 0; i < amt; i++) {
+    total += basePrice;
+    basePrice *= priceMultiplier;
+  }
+  return total * currencyWorth;
 }
 
 // EVENT LISTENERS //
@@ -248,7 +267,7 @@ gnrBuyButton.addEventListener("pointerdown", () => {
     if (currency == 0) {
       curTxt.innerHTML = roundTo(clk, 0) + " CLK";
     }
-    cpsTxt.innerHTML = roundTo((gnrAmt * ((bstAmt / 2) + 1)), 1) + " CLK/s"
+    cpsTxt.innerHTML = roundTo(((gnrAmt * ((bstAmt / 2) + 1)) * 2), 1) + " CLK/s";
     gnrPriceTxt.innerHTML = roundTo(gnrPrice, 0);
     gnrOwnedTxt.innerHTML = roundTo(gnrAmt, 0);
   } else {
@@ -260,6 +279,7 @@ gnrSellButton.addEventListener("pointerdown", () => {
     gnrAmt -= 1;
     clk += gnrSell;
     gnrPrice /= 1.15
+    cpsTxt.innerHTML = roundTo(((gnrAmt * ((bstAmt / 2) + 1)) * 2), 1) + " CLK/s";
   }
 });
 bstBuyButton.addEventListener("pointerdown", () => {
@@ -273,7 +293,7 @@ bstBuyButton.addEventListener("pointerdown", () => {
     if (currency == 0) {
       curTxt.innerHTML = roundTo(clk, 0) + " CLK";
     }
-    cpsTxt.innerHTML = roundTo((gnrAmt * ((bstAmt / 2) + 1)), 1) + " CLK/s"
+    cpsTxt.innerHTML = roundTo(((gnrAmt * ((bstAmt / 2) + 1)) * 2), 1) + " CLK/s";
     bstPriceTxt.innerHTML = roundTo(bstPrice, 0);
     bstOwnedTxt.innerHTML = roundTo(bstAmt, 0);
   } else {
@@ -285,6 +305,7 @@ bstSellButton.addEventListener("pointerdown", () => {
     bstAmt -= 1;
     clk += bstSell;
     bstPrice /= 1.15
+    cpsTxt.innerHTML = roundTo(((gnrAmt * ((bstAmt / 2) + 1)) * 2), 1) + " CLK/s";
   }
 });
 cnvBuyButton.addEventListener("pointerdown", () => {
@@ -298,7 +319,7 @@ cnvBuyButton.addEventListener("pointerdown", () => {
     if (currency == 0) {
       curTxt.innerHTML = roundTo(clk, 0) + " CLK";
     }
-    cpsTxt.innerHTML = roundTo((gnrAmt * ((bstAmt / 2) + 1)), 1) + " CLK/s"
+    cpsTxt.innerHTML = roundTo(((gnrAmt * ((bstAmt / 2) + 1)) * 2), 1) + " CLK/s";
     cnvPriceTxt.innerHTML = roundTo(cnvPrice, 0);
     cnvOwnedTxt.innerHTML = roundTo(cnvAmt, 0);
   } else {
@@ -310,6 +331,7 @@ cnvSellButton.addEventListener("pointerdown", () => {
     cnvAmt -= 1;
     clk += cnvSell;
     cnvPrice /= 1.15
+    cpsTxt.innerHTML = roundTo(((gnrAmt * ((bstAmt / 2) + 1)) * 2), 1) + " CLK/s";
   }
 });
 ampBuyButton.addEventListener("pointerdown", () => {
@@ -322,7 +344,7 @@ ampBuyButton.addEventListener("pointerdown", () => {
     if (currency == 3) {
       curTxt.innerHTML = roundTo(cre, 0) + " CRE";
     }
-    cpsTxt.innerHTML = roundTo((gnrAmt * ((bstAmt / 2) + 1)), 1) + " CLK/s"
+    cpsTxt.innerHTML = roundTo(((gnrAmt * ((bstAmt / 2) + 1)) * 2), 1) + " CLK/s";
     ampPriceTxt.innerHTML = roundTo(ampPrice, 0);
     ampOwnedTxt.innerHTML = roundTo(ampAmt, 0);
   } else {
@@ -334,6 +356,7 @@ ampSellButton.addEventListener("pointerdown", () => {
     ampAmt -= 1;
     cre += ampSell;
     ampPrice /= 1.15
+    cpsTxt.innerHTML = roundTo(((gnrAmt * ((bstAmt / 2) + 1)) * 2), 1) + " CLK/s";
   }
 });
 
@@ -435,7 +458,7 @@ setInterval(function () {
     document.getElementById("you-bst").innerHTML = roundTo(bstAmt, 0);
     document.getElementById("you-cnv").innerHTML = roundTo(cnvAmt, 0);
     document.getElementById("you-amp").innerHTML = roundTo(ampAmt, 0);
-    document.getElementById("total-worth").innerHTML = "$" +roundTo(((clk * 0.0000032) + (tck * 0.0004) + (flo * 0.0016) + (cre * 0.04) + mny), 2);
+    document.getElementById("total-worth").innerHTML = "$" +roundTo(((clk * 0.0000032) + (tck * 0.0004) + (flo * 0.0016) + (cre * 0.04) + mny + findUpgradeWorth(gnrAmt, 15, 1.15, 0.0000032) + findUpgradeWorth(bstAmt, 250, 1.15, 0.0000032) + findUpgradeWorth(cnvAmt, 5000, 1.15, 0.0000032) + findUpgradeWorth(ampAmt, 1, 1.15, 0.04)), 2);
   }
 }, 100);
 
@@ -460,7 +483,7 @@ setInterval(async function () {
   const snapshot = await get(ref(db, 'users/' + user.uid));
 
   const data = snapshot.val();
-  
+
   try {
     if (!data.clickrSave) {
         console.log("New player detected (no save found). Sending email");
