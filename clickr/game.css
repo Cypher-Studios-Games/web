@@ -93,3 +93,7 @@ body {
   height: 30px;
   width: 20%;
 }
+
+#tutorial {
+  display: none;
+}

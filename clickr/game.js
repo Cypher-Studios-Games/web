@@ -91,6 +91,9 @@ var youMenuButton = document.getElementById("you-button");
 var optionsMenuButton = document.getElementById("options-button");
 var aboutMenuButton = document.getElementById("about-button");
 
+    // Other Buttons
+var openTutorialButton = document.getElementById("open-tutorial-btn");
+
   // Other
 
     // Select Menus
@@ -253,6 +256,14 @@ aboutMenuButton.addEventListener("pointerdown", () => {
   document.getElementById("you-div").style.display = "none";
   document.getElementById("options-div").style.display = "none";
   document.getElementById("about-div").style.display = "block";
+});
+
+openTutorialButton.addEventListener("pointerdown", () => {
+  if (document.getElementById("tutorial").style.display === "block") {
+    document.getElementById("tutorial").style.display = "none";
+  } else {
+    document.getElementById("tutorial").style.display = "block";
+  }
 });
 
   // Shop
