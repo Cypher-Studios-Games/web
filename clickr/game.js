@@ -534,7 +534,10 @@ auth.onAuthStateChanged(async (user) => {
         // After loading, ensure the UI shows the new values
         updateUI(); 
     } else {
-        alert("You are not logged in. Please log in to load and save your game data.");
-        console.log("No user is signed in.");
+      if (confirm("You are not logged in. Would you like to log in now to save your game progress??")) {
+        window.location.href = "/login/index.html?redirect=clickr";
+      } else {
+        alert("You can play the game, but your progress won't be saved until you log in.");
+      }
     }
 });

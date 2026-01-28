@@ -9,6 +9,8 @@ const resetEmail = document.getElementById("resetEmail");
 const cancelReset = document.getElementById("cancelReset");
 const message = document.getElementById("message");
 
+const urlParams = new URLSearchParams(window.location.search);
+
 // ===== Login =====
 loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -19,6 +21,11 @@ loginForm.addEventListener("submit", async (e) => {
     await signInWithEmailAndPassword(auth, email, password);
     message.style.color = "#0ff";
     message.textContent = "Login successful!";
+    if (urlParams.has("redirect")) {
+      const redirectPage = urlParams.get("redirect");
+      window.location.href = `/${redirectPage}/`;
+      return;
+    }
     window.location.href = "/account/";
   } catch (err) {
     console.error(err);
