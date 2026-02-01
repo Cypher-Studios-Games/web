@@ -235,6 +235,14 @@ tradeMenuButton.addEventListener("pointerdown", () => {
   document.getElementById("you-div").style.display = "none";
   document.getElementById("options-div").style.display = "none";
   document.getElementById("about-div").style.display = "none";
+
+  if (cnvAmt < 1) {
+    document.getElementById("trade-locked").style.display = "block";
+    document.getElementById("trade-unlocked").style.display = "none";
+  } else {
+    document.getElementById("trade-locked").style.display = "none";
+    document.getElementById("trade-unlocked").style.display = "block";
+  }
 });
 youMenuButton.addEventListener("pointerdown", () => {
   document.getElementById("shop-div").style.display = "none";
