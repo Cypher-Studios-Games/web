@@ -427,3 +427,11 @@ footer {
   justify-content: center;
   align-items: center;
 }
+
+.social-links a {
+  margin-right: 15px;
+}
+
+.social-links a:last-child {
+  margin-right: 0;
+}
