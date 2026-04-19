@@ -30,11 +30,6 @@ auth.onAuthStateChanged(async (user) => {
         await set(ref(db, `users/${user.uid}/emailVerified`), true);
       }
 
-      const surveyUrl =
-        "https://theoremreach.com/respondent_entry" +
-        `?api_key=${THEOREMREACH_API_KEY}` +
-        `&user_id=${user.uid}`;
-
       // Show account info
       accountContainer.innerHTML = `
         <h1>Account Info</h1>
@@ -44,7 +39,6 @@ auth.onAuthStateChanged(async (user) => {
         <p><strong>Time Played: </strong> ${userData.timePlayed ? userData.timePlayed.toFixed(0) + " minutes" : "0 minutes"}</p>
         <p><strong>Points: </strong> ${Math.floor(userData.points) || 0}</p>
         <h1>Want more points?</h1>
-        <p>Take surveys and complete offers <a href="${surveyUrl}" target="_blank" rel="noopener">here</a> to earn more points!</p>
       `;
     } else {
       accountContainer.innerHTML = `
